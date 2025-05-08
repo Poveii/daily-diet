@@ -10,4 +10,11 @@ export const Container = styled.View`
 export const LoadingIndicator = styled.ActivityIndicator.attrs(({ theme }) => ({
   color: theme.COLORS.GRAY_200,
   size: 'large',
-}))``;
+}))`
+  margin-top: 4px;
+`;
+
+export const Logo = styled.Image`
+  width: 82px;
+  height: 37px;
+`;
