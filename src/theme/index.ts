@@ -42,4 +42,4 @@ export default {
     TITLE_MD: 32,
     TITLE_LG: 42,
   },
-};
+} as const;
