@@ -13,18 +13,14 @@ export const Container = styled.TouchableOpacity`
 export const ScoreNumber = styled.Text`
   ${({ theme }) => css`
     color: ${theme.COLORS.GRAY_100};
-    font-family: ${theme.FONT_FAMILY.BOLD};
-    font-size: ${theme.FONT_SIZE.TITLE_LG}px;
-    line-height: ${theme.LINE_HEIGHT.TITLE_LG}px;
+    font: ${theme.TEXT_STYLES.TITLE_LG};
   `}
 `;
 
 export const ScoreText = styled.Text`
   ${({ theme }) => css`
     color: ${theme.COLORS.GRAY_200};
-    font-family: ${theme.FONT_FAMILY.REGULAR};
-    font-size: ${theme.FONT_SIZE.BODY_SM}px;
-    line-height: ${theme.LINE_HEIGHT.BODY_SM}px;
+    font: ${theme.TEXT_STYLES.BODY_SM};
   `}
   margin-top: 2px;
 `;

@@ -18,28 +18,18 @@ export default {
     GREEN_MID: '#CBE4B4',
     GREEN_LIGHT: '#E5F0DB',
   },
+  TEXT_STYLES: {
+    BODY_XS: '12px / 16px NunitoSans_700Bold',
+    BODY_SM: '14px / 18px NunitoSans_400Regular',
+    BODY_MD: '16px / 21px NunitoSans_400Regular',
+
+    TITLE_XS: '14px / 18px NunitoSans_700Bold',
+    TITLE_SM: '18px / 24px NunitoSans_700Bold',
+    TITLE_MD: '24px / 32px NunitoSans_700Bold',
+    TITLE_LG: '32px / 42px NunitoSans_700Bold',
+  },
   FONT_FAMILY: {
     REGULAR: 'NunitoSans_400Regular',
     BOLD: 'NunitoSans_700Bold',
-  },
-  FONT_SIZE: {
-    BODY_XS: 12,
-    BODY_SM: 14,
-    BODY_MD: 16,
-
-    TITLE_XS: 14,
-    TITLE_SM: 18,
-    TITLE_MD: 24,
-    TITLE_LG: 32,
-  },
-  LINE_HEIGHT: {
-    BODY_XS: 16,
-    BODY_SM: 18,
-    BODY_MD: 21,
-
-    TITLE_XS: 18,
-    TITLE_SM: 24,
-    TITLE_MD: 32,
-    TITLE_LG: 42,
   },
 } as const;

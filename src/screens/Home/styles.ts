@@ -40,9 +40,7 @@ export const MealsContainer = styled.View`
 export const NewMealTitle = styled.Text`
   ${({ theme }) => css`
     color: ${theme.COLORS.GRAY_100};
-    font-family: ${theme.FONT_FAMILY.REGULAR};
-    font-size: ${theme.FONT_SIZE.BODY_MD}px;
-    line-height: ${theme.LINE_HEIGHT.BODY_MD}px;
+    font: ${theme.TEXT_STYLES.BODY_MD};
   `}
 `;
 
@@ -64,9 +62,8 @@ export const PlusIcon = styled(Plus).attrs(({ theme }) => ({
 export const NewMealText = styled.Text`
   ${({ theme }) => css`
     color: ${theme.COLORS.WHITE};
+    font: ${theme.TEXT_STYLES.BODY_SM};
     font-family: ${theme.FONT_FAMILY.BOLD};
-    font-size: ${theme.FONT_SIZE.BODY_SM}px;
-    line-height: ${theme.LINE_HEIGHT.BODY_SM}px;
   `}
 `;
 
@@ -83,9 +80,7 @@ export const MealWrapper = styled.View`
 export const MealTime = styled.Text`
   ${({ theme }) => css`
     color: ${theme.COLORS.GRAY_100};
-    font-family: ${theme.FONT_FAMILY.BOLD};
-    font-size: ${theme.FONT_SIZE.BODY_XS}px;
-    line-height: ${theme.LINE_HEIGHT.BODY_XS}px;
+    font: ${theme.TEXT_STYLES.BODY_XS};
   `}
 `;
 
@@ -98,9 +93,7 @@ export const MealTitle = styled.Text`
   max-width: 190px;
   ${({ theme }) => css`
     color: ${theme.COLORS.GRAY_200};
-    font-family: ${theme.FONT_FAMILY.REGULAR};
-    font-size: ${theme.FONT_SIZE.BODY_MD}px;
-    line-height: ${theme.LINE_HEIGHT.BODY_MD}px;
+    font: ${theme.TEXT_STYLES.BODY_MD};
   `}
 `;
 
@@ -114,9 +107,7 @@ export const DoneIndicator = styled.View`
 export const MealDate = styled.Text`
   ${({ theme }) => css`
     color: ${theme.COLORS.GRAY_100};
-    font-family: ${theme.FONT_FAMILY.BOLD};
-    font-size: ${theme.FONT_SIZE.TITLE_SM}px;
-    line-height: ${theme.LINE_HEIGHT.TITLE_SM}px;
-    margin-bottom: -32px;
+    font: ${theme.TEXT_STYLES.TITLE_SM};
   `}
+  margin-bottom: -32px;
 `;
