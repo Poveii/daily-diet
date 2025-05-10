@@ -5,12 +5,14 @@ export const Container = styled(SafeAreaView)`
   flex: 1;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
+  margin-top: 12px;
 `;
 
 export const BackButton = styled.TouchableOpacity`
   padding: 8px;
-  margin-top: 12px;
   margin-left: 16px;
+  margin-right: auto;
 `;
 
 export const PageTitle = styled.Text`
@@ -18,4 +20,7 @@ export const PageTitle = styled.Text`
     color: ${theme.COLORS.GRAY_100};
     font: ${theme.TEXT_STYLES.TITLE_SM};
   `}
+  text-align: center;
+  margin-left: -48px;
+  margin-right: auto;
 `;

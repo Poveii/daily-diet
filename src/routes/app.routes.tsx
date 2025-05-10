@@ -33,7 +33,7 @@ export function AppRoutes() {
         options={{
           headerShown: true,
           headerTransparent: true,
-          header: () => <HeaderScreen />,
+          header: () => <HeaderScreen title="Nova refeição" />,
         }}
       />
     </Stack.Navigator>
