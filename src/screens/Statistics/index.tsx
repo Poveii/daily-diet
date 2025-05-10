@@ -1,22 +1,58 @@
-import { Text, TouchableOpacity } from 'react-native';
+import { useTheme } from 'styled-components/native';
 
-import { Container } from './styles';
-import { useNavigation } from '@react-navigation/native';
+import {
+  Container,
+  PadContainer,
+  PadDescription,
+  PadRowContainer,
+  PadTitle,
+  ScoreContainer,
+  ScoreNumber,
+  ScoreText,
+  StatsContent,
+  StatsPads,
+  StatsText,
+} from './styles';
 
 export function Statistics() {
-  const navigation = useNavigation();
-
-  function handleGoBack() {
-    navigation.goBack();
-  }
+  const theme = useTheme();
 
   return (
     <Container>
-      <Text>Statistics</Text>
+      <ScoreContainer>
+        <ScoreNumber>90,86%</ScoreNumber>
+        <ScoreText>das refeições dentro da dieta</ScoreText>
+      </ScoreContainer>
 
-      <TouchableOpacity activeOpacity={0.8} onPress={handleGoBack}>
-        <Text>Voltar</Text>
-      </TouchableOpacity>
+      <StatsContent>
+        <StatsText>Estatísticas gerais</StatsText>
+
+        <StatsPads>
+          <PadContainer>
+            <PadTitle>22</PadTitle>
+            <PadDescription>
+              melhor sequência de pratos dentro da dieta
+            </PadDescription>
+          </PadContainer>
+
+          <PadContainer>
+            <PadTitle>109</PadTitle>
+            <PadDescription>refeições registradas</PadDescription>
+          </PadContainer>
+
+          <PadRowContainer>
+            <PadContainer $bgColor={theme.COLORS.GREEN_LIGHT}>
+              <PadTitle>99</PadTitle>
+              <PadDescription>refeições dentro da dieta</PadDescription>
+            </PadContainer>
+
+            <PadContainer $bgColor={theme.COLORS.RED_LIGHT}>
+              <PadTitle>10</PadTitle>
+              <PadDescription>refeições fora da dieta</PadDescription>
+            </PadContainer>
+          </PadRowContainer>
+        </StatsPads>
+      </StatsContent>
     </Container>
   );
 }
