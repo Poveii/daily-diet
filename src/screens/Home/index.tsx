@@ -1,6 +1,10 @@
-import { useNavigation } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { useTheme } from 'styled-components/native';
 import { SectionList, View } from 'react-native';
+import { useCallback, useState } from 'react';
+
+import { mealsGetAll } from '@/storage/meals/mealsGetAll';
+import { MealDay } from '@/storage/storageConfig';
 
 import { ScoreBoard } from '@/components/ScoreBoard';
 
@@ -8,6 +12,7 @@ import {
   Container,
   Divider,
   DoneIndicator,
+  EmptyMealsListText,
   Header,
   Logo,
   MealDate,
@@ -23,66 +28,7 @@ import {
 } from './styles';
 
 export function Home() {
-  const data = [
-    {
-      title: '12.08.22',
-      data: [
-        {
-          id: '1',
-          time: '20:00',
-          title: 'X-tudo',
-          isDone: false,
-        },
-        {
-          id: '2',
-          time: '16:00',
-          title: 'Whey protein com leite',
-          isDone: true,
-        },
-        {
-          id: '3',
-          time: '12:30',
-          title: 'Salada cesar com frango grelhado',
-          isDone: true,
-        },
-        {
-          id: '4',
-          time: '09:30',
-          title: 'Vitamina de banana com abacate',
-          isDone: true,
-        },
-      ],
-    },
-    {
-      title: '11.08.22',
-      data: [
-        {
-          id: '1',
-          time: '20:00',
-          title: 'X-tudo',
-          isDone: false,
-        },
-        {
-          id: '2',
-          time: '16:00',
-          title: 'Whey protein com leite',
-          isDone: true,
-        },
-        {
-          id: '3',
-          time: '12:30',
-          title: 'Salada cesar com frango grelhado',
-          isDone: true,
-        },
-        {
-          id: '4',
-          time: '09:30',
-          title: 'Vitamina de banana com abacate',
-          isDone: true,
-        },
-      ],
-    },
-  ];
+  const [meals, setMeals] = useState<MealDay[]>([]);
 
   const navigation = useNavigation();
   const theme = useTheme();
@@ -92,8 +38,23 @@ export function Home() {
   }
 
   function handleOpenNewMeal() {
-    navigation.navigate('newMeal');
+    navigation.navigate('newMeal', { meals });
   }
+
+  async function fetchMeals() {
+    try {
+      const data = await mealsGetAll();
+      setMeals(data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  useFocusEffect(
+    useCallback(() => {
+      fetchMeals();
+    }, []),
+  );
 
   return (
     <Container>
@@ -114,7 +75,7 @@ export function Home() {
         </>
 
         <SectionList
-          sections={data}
+          sections={meals}
           style={{ marginTop: 32 }}
           overScrollMode="never"
           showsVerticalScrollIndicator={false}
@@ -128,8 +89,8 @@ export function Home() {
             <MealWrapper>
               <MealTime>{item.time}</MealTime>
               <Divider />
-              <MealTitle numberOfLines={1}>{item.title}</MealTitle>
-              {item.isDone ? (
+              <MealTitle numberOfLines={1}>{item.name}</MealTitle>
+              {item.isDiet ? (
                 <DoneIndicator
                   style={{ backgroundColor: theme.COLORS.GREEN_MID }}
                 />
@@ -139,6 +100,11 @@ export function Home() {
                 />
               )}
             </MealWrapper>
+          )}
+          ListEmptyComponent={() => (
+            <EmptyMealsListText>
+              Nenhuma refeição na lista. Adicione uma no botão acima.
+            </EmptyMealsListText>
           )}
         />
       </MealsContainer>

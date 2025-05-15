@@ -111,3 +111,13 @@ export const MealDate = styled.Text`
   `}
   margin-bottom: -32px;
 `;
+
+export const EmptyMealsListText = styled.Text`
+  ${({ theme }) => css`
+    color: ${theme.COLORS.GRAY_300};
+    font: ${theme.TEXT_STYLES.BODY_SM};
+  `}
+  padding-inline: 48px;
+  text-align: center;
+  opacity: 0.6;
+`;

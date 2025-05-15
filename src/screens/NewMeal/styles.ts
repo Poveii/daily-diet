@@ -45,32 +45,6 @@ export const DietGroup = styled.View`
   gap: 8px;
 `;
 
-export const InputButton = styled.TouchableOpacity`
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 16px;
-  background-color: ${({ theme }) => theme.COLORS.GRAY_600};
-  border-radius: 6px;
-`;
-
-export const InputButtonText = styled.Text`
-  ${({ theme }) => css`
-    color: ${theme.COLORS.GRAY_100};
-    font: ${theme.TEXT_STYLES.TITLE_XS};
-  `}
-`;
-
-export const IndicatorCircle = styled.View<{ $color: 'green' | 'red' }>`
-  width: 8px;
-  height: 8px;
-  border-radius: 99px;
-  background-color: ${({ $color, theme }) =>
-    ($color === 'green' && theme.COLORS.GREEN_DARK) ||
-    ($color === 'red' && theme.COLORS.RED_DARK)};
-`;
-
 export const SubmitButton = styled.TouchableOpacity`
   align-items: center;
   padding: 16px 24px;
