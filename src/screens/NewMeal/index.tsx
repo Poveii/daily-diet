@@ -38,7 +38,9 @@ export function NewMeal() {
         isDiet: Boolean(isDiet), // TODO: Adicionar uma etapa de validação do resultado do `isDiet`.
       };
       await mealCreate(newMeal);
-      navigation.navigate('home');
+
+      const feedbackType = Boolean(isDiet) ? 'positive' : 'negative';
+      navigation.navigate('feedback', { type: feedbackType });
     } catch (error) {
       console.error(error);
     }

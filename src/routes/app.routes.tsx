@@ -6,6 +6,7 @@ import { HeaderScreen } from '@/components/HeaderScreen';
 import { Home } from '@/screens/Home';
 import { Statistics } from '@/screens/Statistics';
 import { NewMeal } from '@/screens/NewMeal';
+import { Feedback } from '@/screens/Feedback';
 
 const Stack = createNativeStackNavigator();
 
@@ -36,6 +37,7 @@ export function AppRoutes() {
           header: () => <HeaderScreen title="Nova refeição" />,
         }}
       />
+      <Stack.Screen name="feedback" component={Feedback} />
     </Stack.Navigator>
   );
 }
