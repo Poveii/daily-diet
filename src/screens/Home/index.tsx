@@ -38,7 +38,7 @@ export function Home() {
   }
 
   function handleOpenNewMeal() {
-    navigation.navigate('newMeal', { meals });
+    navigation.navigate('newMeal');
   }
 
   async function fetchMeals() {

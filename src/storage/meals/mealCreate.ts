@@ -8,8 +8,11 @@ export async function mealCreate(newMeal: Meal) {
   try {
     const storedMeals = await mealsGetAll();
 
-    // TODO: Validar antes de criar um novo MealDay se já existe esse dia.
+    const mealDateExists = storedMeals.find(
+      ({ title }) => title === newMeal.date,
+    );
 
+    let storage = '';
     const mealDay = {
       title: newMeal.date,
       data: [
@@ -24,7 +27,18 @@ export async function mealCreate(newMeal: Meal) {
       ],
     };
 
-    const storage = JSON.stringify([...storedMeals, mealDay]);
+    if (mealDateExists) {
+      const newStoredMeals = storedMeals.map((item) => {
+        if (item.title === newMeal.date) {
+          item.data.push(newMeal);
+        }
+        return item;
+      });
+      storage = JSON.stringify(newStoredMeals);
+    } else {
+      storage = JSON.stringify([...storedMeals, mealDay]);
+    }
+
     await AsyncStorage.setItem(MEALS_COLLECTION, storage);
   } catch (error) {
     throw error;
