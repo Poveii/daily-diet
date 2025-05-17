@@ -7,6 +7,7 @@ import { Home } from '@/screens/Home';
 import { Statistics } from '@/screens/Statistics';
 import { NewMeal } from '@/screens/NewMeal';
 import { Feedback } from '@/screens/Feedback';
+import { Meal } from '@/screens/Meal';
 
 const Stack = createNativeStackNavigator();
 
@@ -38,6 +39,15 @@ export function AppRoutes() {
         }}
       />
       <Stack.Screen name="feedback" component={Feedback} />
+      <Stack.Screen
+        name="meal"
+        component={Meal}
+        options={{
+          headerShown: true,
+          headerTransparent: true,
+          header: () => <HeaderScreen title="Refeição" />,
+        }}
+      />
     </Stack.Navigator>
   );
 }

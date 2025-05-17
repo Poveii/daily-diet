@@ -4,7 +4,7 @@ import { SectionList, View } from 'react-native';
 import { useCallback, useState } from 'react';
 
 import { mealsGetAll } from '@/storage/meals/mealsGetAll';
-import { MealDay } from '@/storage/storageConfig';
+import { Meal, MealDay } from '@/storage/storageConfig';
 
 import { ScoreBoard } from '@/components/ScoreBoard';
 
@@ -39,6 +39,10 @@ export function Home() {
 
   function handleOpenNewMeal() {
     navigation.navigate('newMeal');
+  }
+
+  function handleOpenMeal(meal: Meal) {
+    navigation.navigate('meal', { meal });
   }
 
   async function fetchMeals() {
@@ -86,7 +90,10 @@ export function Home() {
             <View style={{ marginBottom: 32 }} />
           )}
           renderItem={({ item }) => (
-            <MealWrapper>
+            <MealWrapper
+              activeOpacity={0.6}
+              onPress={() => handleOpenMeal(item)}
+            >
               <MealTime>{item.time}</MealTime>
               <Divider />
               <MealTitle numberOfLines={1}>{item.name}</MealTitle>

@@ -67,7 +67,7 @@ export const NewMealText = styled.Text`
   `}
 `;
 
-export const MealWrapper = styled.View`
+export const MealWrapper = styled.TouchableOpacity`
   flex-direction: row;
   align-items: center;
   gap: 12px;

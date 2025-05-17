@@ -8,6 +8,8 @@ export async function mealsGetAll() {
 
     const meals: MealDay[] = storage ? JSON.parse(storage) : [];
 
+    // TODO: Formatar o meals para que retorne elas em ordem decrescente
+
     return meals;
   } catch (error) {
     throw error;

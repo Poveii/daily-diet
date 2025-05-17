@@ -1,3 +1,5 @@
+import { Meal as MealType } from '@/storage/storageConfig';
+
 export declare global {
   namespace ReactNavigation {
     interface RootParamList {
@@ -6,6 +8,9 @@ export declare global {
       newMeal: undefined;
       feedback: {
         type: 'positive' | 'negative';
+      };
+      meal: {
+        meal: MealType;
       };
     }
   }
