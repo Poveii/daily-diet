@@ -6,9 +6,19 @@ export async function mealsGetAll() {
   try {
     const storage = await AsyncStorage.getItem(MEALS_COLLECTION);
 
-    const meals: MealDay[] = storage ? JSON.parse(storage) : [];
+    let meals: MealDay[] = storage ? JSON.parse(storage) : [];
 
-    // TODO: Formatar o meals para que retorne elas em ordem decrescente
+    if (meals.length >= 1) {
+      meals = meals
+        .map((mealsDay) => {
+          mealsDay.data = mealsDay.data.sort((a, b) =>
+            a.time.localeCompare(b.time),
+          );
+          return mealsDay;
+        })
+        .sort((a, b) => a.title.localeCompare(b.title))
+        .reverse();
+    }
 
     return meals;
   } catch (error) {
