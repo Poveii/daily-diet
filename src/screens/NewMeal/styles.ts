@@ -6,12 +6,23 @@ export const Container = styled(SafeAreaView)`
   background-color: ${({ theme }) => theme.COLORS.GRAY_500};
 `;
 
+export const ScrollContainer = styled.ScrollView.attrs(() => ({
+  contentContainerStyle: {
+    flex: 1,
+  },
+}))``;
+
 export const Form = styled.View`
   flex: 1;
   padding: 16px 24px 0px 24px;
   margin-top: 68px;
   background-color: ${({ theme }) => theme.COLORS.GRAY_700};
   border-radius: 20px;
+`;
+
+export const InputsGroup = styled.View`
+  flex: 1;
+  margin-bottom: 68px;
 `;
 
 export const Label = styled.Text`

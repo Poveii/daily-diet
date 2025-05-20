@@ -1,12 +1,20 @@
 import styled, { css } from 'styled-components/native';
+
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-export const Container = styled(SafeAreaView)`
+export const Container = styled(SafeAreaView)<{ $bgColor: string | undefined }>`
   flex: 1;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  padding: 8px 0;
   margin-top: 12px;
+  ${({ $bgColor }) =>
+    $bgColor
+      ? css`
+          background-color: ${$bgColor};
+        `
+      : ``}
 `;
 
 export const BackButton = styled.TouchableOpacity`

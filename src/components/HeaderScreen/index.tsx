@@ -7,9 +7,10 @@ import { BackButton, Container, PageTitle } from './styles';
 type Props = {
   iconColor?: string;
   title?: string;
+  bgColor?: string;
 };
 
-export function HeaderScreen({ iconColor, title }: Props) {
+export function HeaderScreen({ iconColor, title, bgColor }: Props) {
   const navigation = useNavigation();
   const theme = useTheme();
 
@@ -20,7 +21,7 @@ export function HeaderScreen({ iconColor, title }: Props) {
   }
 
   return (
-    <Container>
+    <Container $bgColor={bgColor}>
       <BackButton activeOpacity={0.8} onPress={handleGoBack}>
         <ArrowLeft color={color} size={24} />
       </BackButton>

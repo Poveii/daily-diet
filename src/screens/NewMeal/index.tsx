@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { randomUUID } from 'expo-crypto';
 import { useNavigation } from '@react-navigation/native';
+import { randomUUID } from 'expo-crypto';
+import { useState } from 'react';
 
 import { mealCreate } from '@/storage/meals/mealCreate';
 
@@ -12,8 +12,10 @@ import {
   ExpandView,
   Form,
   Input,
+  InputsGroup,
   InputsRowContainer,
   Label,
+  ScrollContainer,
   SubmitButton,
   SubmitButtonText,
 } from './styles';
@@ -48,52 +50,56 @@ export function NewMeal() {
 
   return (
     <Container>
-      <Form>
-        <Label>Nome</Label>
-        <Input onChangeText={setName} value={name} />
+      <ScrollContainer>
+        <Form>
+          <InputsGroup>
+            <Label>Nome</Label>
+            <Input onChangeText={setName} value={name} />
 
-        <Label>Descrição</Label>
-        <Input
-          style={{ height: 120 }}
-          multiline
-          onChangeText={setDescription}
-          value={description}
-        />
-
-        <InputsRowContainer>
-          <ExpandView>
-            <Label>Data</Label>
-            <Input onChangeText={setDate} value={date} />
-          </ExpandView>
-
-          <ExpandView>
-            <Label>Hora</Label>
-            <Input onChangeText={setTime} value={time} />
-          </ExpandView>
-        </InputsRowContainer>
-
-        <DietGroup>
-          <Label>Está dentro da dieta?</Label>
-          <InputsRowContainer style={{ gap: 8 }}>
-            <InputButton
-              text="Sim"
-              indicatorColor="green"
-              isActive={isDiet ?? false}
-              onPress={() => setIsDiet(true)}
+            <Label>Descrição</Label>
+            <Input
+              style={{ height: 120 }}
+              multiline
+              onChangeText={setDescription}
+              value={description}
             />
-            <InputButton
-              text="Não"
-              indicatorColor="red"
-              isActive={isDiet ?? true}
-              onPress={() => setIsDiet(false)}
-            />
-          </InputsRowContainer>
-        </DietGroup>
 
-        <SubmitButton activeOpacity={0.8} onPress={handleNewMeal}>
-          <SubmitButtonText>Cadastrar refeição</SubmitButtonText>
-        </SubmitButton>
-      </Form>
+            <InputsRowContainer>
+              <ExpandView>
+                <Label>Data</Label>
+                <Input onChangeText={setDate} value={date} />
+              </ExpandView>
+
+              <ExpandView>
+                <Label>Hora</Label>
+                <Input onChangeText={setTime} value={time} />
+              </ExpandView>
+            </InputsRowContainer>
+
+            <DietGroup>
+              <Label>Está dentro da dieta?</Label>
+              <InputsRowContainer style={{ gap: 8 }}>
+                <InputButton
+                  text="Sim"
+                  indicatorColor="green"
+                  isActive={isDiet ?? false}
+                  onPress={() => setIsDiet(true)}
+                />
+                <InputButton
+                  text="Não"
+                  indicatorColor="red"
+                  isActive={isDiet ?? true}
+                  onPress={() => setIsDiet(false)}
+                />
+              </InputsRowContainer>
+            </DietGroup>
+          </InputsGroup>
+
+          <SubmitButton activeOpacity={0.8} onPress={handleNewMeal}>
+            <SubmitButtonText>Cadastrar refeição</SubmitButtonText>
+          </SubmitButton>
+        </Form>
+      </ScrollContainer>
     </Container>
   );
 }
