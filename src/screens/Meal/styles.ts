@@ -121,3 +121,65 @@ export const DeleteMealText = styled.Text`
   `}
   margin-top: 2px;
 `;
+
+export const ModalWrapper = styled.View`
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.25);
+`;
+
+export const ModalContainer = styled.View`
+  width: 90%;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  padding: 40px 24px 24px 24px;
+  background-color: ${({ theme }) => theme.COLORS.GRAY_700};
+  border-radius: 8px;
+`;
+
+export const ModalTitle = styled.Text`
+  ${({ theme }) => css`
+    color: ${theme.COLORS.GRAY_200};
+    font: ${theme.TEXT_STYLES.TITLE_SM};
+  `}
+  width: 280px;
+  text-align: center;
+`;
+
+export const ModalButtonsRow = styled.View`
+  flex-direction: row;
+  gap: 12px;
+`;
+
+export const ModalButton = styled.TouchableOpacity<{ $emphasize?: boolean }>`
+  ${({ $emphasize, theme }) =>
+    $emphasize
+      ? css`
+          background-color: ${theme.COLORS.GRAY_200};
+          border: none;
+        `
+      : css`
+          background-color: transparent;
+          border: 1px ${theme.COLORS.GRAY_100};
+        `}
+  font: ${({ theme }) => theme.TEXT_STYLES.TITLE_SM};
+  flex: 1;
+  padding: 16px 24px;
+  border-radius: 6px;
+`;
+
+export const ModalButtonText = styled.Text<{ $emphasize?: boolean }>`
+  ${({ $emphasize, theme }) =>
+    $emphasize
+      ? css`
+          color: ${theme.COLORS.WHITE};
+        `
+      : css`
+          color: ${theme.COLORS.GRAY_100};
+        `}
+  font: ${({ theme }) => theme.TEXT_STYLES.BODY_SM};
+  font-family: ${({ theme }) => theme.FONT_FAMILY.BOLD};
+  text-align: center;
+`;

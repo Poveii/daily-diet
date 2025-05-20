@@ -8,6 +8,7 @@ import { Statistics } from '@/screens/Statistics';
 import { NewMeal } from '@/screens/NewMeal';
 import { Feedback } from '@/screens/Feedback';
 import { Meal } from '@/screens/Meal';
+import { EditMeal } from '@/screens/EditMeal';
 
 const Stack = createNativeStackNavigator();
 
@@ -46,6 +47,15 @@ export function AppRoutes() {
           headerShown: true,
           headerTransparent: true,
           header: () => <HeaderScreen title="Refeição" />,
+        }}
+      />
+      <Stack.Screen
+        name="editMeal"
+        component={EditMeal}
+        options={{
+          headerShown: true,
+          headerTransparent: true,
+          header: () => <HeaderScreen title="Editar refeição" />,
         }}
       />
     </Stack.Navigator>

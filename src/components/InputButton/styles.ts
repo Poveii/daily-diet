@@ -6,6 +6,14 @@ type InputButtonProps = {
 };
 
 export const Container = styled.TouchableOpacity<InputButtonProps>`
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px;
+  background-color: ${({ theme }) => theme.COLORS.GRAY_600};
+  border-radius: 6px;
+
   ${({ theme, isActive, indicatorColor }) => {
     switch (isActive) {
       case null:
@@ -30,14 +38,6 @@ export const Container = styled.TouchableOpacity<InputButtonProps>`
         break;
     }
   }}
-
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 16px;
-  background-color: ${({ theme }) => theme.COLORS.GRAY_600};
-  border-radius: 6px;
 `;
 
 export const IndicatorCircle = styled.View<{ $color: 'green' | 'red' }>`

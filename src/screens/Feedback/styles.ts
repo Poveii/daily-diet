@@ -9,7 +9,7 @@ export const Container = styled(SafeAreaView)`
 `;
 
 export const FeedbackWrapper = styled.View`
-  gap: 8;
+  gap: 8px;
   margin-bottom: 40px;
 `;
 

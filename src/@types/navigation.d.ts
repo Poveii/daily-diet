@@ -12,6 +12,9 @@ export declare global {
       meal: {
         meal: MealType;
       };
+      editMeal: {
+        meal: MealType;
+      };
     }
   }
 }

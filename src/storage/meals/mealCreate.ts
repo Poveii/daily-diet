@@ -15,16 +15,7 @@ export async function mealCreate(newMeal: Meal) {
     let storage = '';
     const mealDay = {
       title: newMeal.date,
-      data: [
-        {
-          id: newMeal.id,
-          name: newMeal.name,
-          description: newMeal.description,
-          date: newMeal.date,
-          time: newMeal.time,
-          isDiet: newMeal.isDiet,
-        },
-      ],
+      data: [newMeal],
     };
 
     if (mealDateExists) {
