@@ -2,10 +2,14 @@ import { Container, LoadingIndicator, Logo } from './styles';
 
 import logoImg from '@/assets/logo.png';
 
-export function Loading() {
+type Props = {
+  logoShown?: boolean;
+};
+
+export function Loading({ logoShown }: Props) {
   return (
     <Container>
-      <Logo source={logoImg} />
+      {logoShown ? <Logo source={logoImg} /> : <></>}
       <LoadingIndicator />
     </Container>
   );

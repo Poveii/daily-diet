@@ -19,7 +19,7 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      {fontsLoaded ? <Routes /> : <Loading />}
+      {fontsLoaded ? <Routes /> : <Loading logoShown />}
       <StatusBar style="auto" />
     </ThemeProvider>
   );
