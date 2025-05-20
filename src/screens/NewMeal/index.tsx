@@ -1,10 +1,13 @@
 import { useNavigation } from '@react-navigation/native';
 import { randomUUID } from 'expo-crypto';
+import { Alert } from 'react-native';
 import { useState } from 'react';
 
 import { mealCreate } from '@/storage/meals/mealCreate';
 
 import { InputButton } from '@/components/InputButton';
+
+import { AppError } from '@/utils/AppError';
 
 import {
   Container,
@@ -31,21 +34,43 @@ export function NewMeal() {
   const navigation = useNavigation();
 
   async function handleNewMeal() {
+    if (name.trim().length === 0) {
+      return Alert.alert('Nova Refeição', 'Informe um nome para a refeição.');
+    } else if (date.trim().length === 0) {
+      return Alert.alert('Nova Refeição', 'Informe a data para a refeição.');
+    } else if (time.trim().length === 0) {
+      return Alert.alert('Nova Refeição', 'Informe a hora para a refeição.');
+    } else if (isDiet === null) {
+      return Alert.alert(
+        'Nova Refeição',
+        'Informe se essa refeição está dentro da dieta ou não.',
+      );
+    }
+
+    const newMeal = {
+      id: randomUUID(),
+      name,
+      description,
+      date,
+      time,
+      isDiet,
+    };
+
     try {
-      const newMeal = {
-        id: randomUUID(),
-        name,
-        description,
-        date,
-        time,
-        isDiet: Boolean(isDiet), // TODO: Adicionar uma etapa de validação do resultado do `isDiet`.
-      };
       await mealCreate(newMeal);
 
-      const feedbackType = Boolean(isDiet) ? 'positive' : 'negative';
+      const feedbackType = isDiet ? 'positive' : 'negative';
       navigation.navigate('feedback', { type: feedbackType });
     } catch (error) {
-      console.error(error);
+      if (error instanceof AppError) {
+        Alert.alert('Nova refeição', error.message);
+      } else {
+        Alert.alert(
+          'Nova refeição',
+          'Não foi possível criar uma nova refeição.',
+        );
+        console.error(error);
+      }
     }
   }
 

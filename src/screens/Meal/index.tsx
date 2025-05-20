@@ -1,7 +1,7 @@
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { PencilSimpleLine, Trash } from 'phosphor-react-native';
 import { useTheme } from 'styled-components/native';
-import { Modal } from 'react-native';
+import { Alert, Modal } from 'react-native';
 import { useState } from 'react';
 
 import { Meal as MealType } from '@/storage/storageConfig';
@@ -59,11 +59,16 @@ export function Meal() {
   }
 
   async function handleDeleteMeal() {
-    setModalVisible(true);
-
-    await mealDelete(meal);
-    setModalVisible(false);
-    navigation.navigate('home', undefined, { pop: true });
+    try {
+      setModalVisible(true);
+      await mealDelete(meal);
+      navigation.navigate('home', undefined, { pop: true });
+    } catch (error) {
+      console.log(error);
+      Alert.alert('Excluir Refeiçõa', 'Não foi possível excluir a refeição.');
+    } finally {
+      setModalVisible(false);
+    }
   }
 
   return (

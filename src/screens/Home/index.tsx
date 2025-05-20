@@ -1,6 +1,6 @@
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { useTheme } from 'styled-components/native';
-import { SectionList, View } from 'react-native';
+import { Alert, SectionList, View } from 'react-native';
 import { useCallback, useState } from 'react';
 
 import { mealsGetAll } from '@/storage/meals/mealsGetAll';
@@ -58,6 +58,7 @@ export function Home() {
       setMeals(data);
     } catch (error) {
       console.error(error);
+      Alert.alert('Refeições', 'Não foi possível carregar as refeições.');
     } finally {
       setIsLoading(false);
     }
@@ -69,6 +70,10 @@ export function Home() {
       setStatistics(computedStatistics);
     } catch (error) {
       console.error(error);
+      Alert.alert(
+        'Estatísticas',
+        'Não foi possível carregar as estatísticas das refeições.',
+      );
     }
   }
 

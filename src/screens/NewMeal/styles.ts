@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components/native';
+
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { MaskedTextInput } from 'react-native-mask-text';
 

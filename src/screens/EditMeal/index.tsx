@@ -1,10 +1,13 @@
 import { useNavigation, useRoute } from '@react-navigation/native';
+import { Alert } from 'react-native';
 import { useState } from 'react';
 
 import { InputButton } from '@/components/InputButton';
 
 import { mealEdit } from '@/storage/meals/mealEdit';
 import { Meal } from '@/storage/storageConfig';
+
+import { AppError } from '@/utils/AppError';
 
 import {
   Container,
@@ -35,20 +38,38 @@ export function EditMeal() {
   const navigation = useNavigation();
 
   async function handleEditMeal() {
-    try {
-      const newMeal = {
-        id: meal.id,
-        name,
-        description,
-        date,
-        time,
-        isDiet, // TODO: Adicionar uma etapa de validação do resultado do `isDiet`.
-      };
-      await mealEdit(newMeal);
+    if (name.trim().length === 0) {
+      return Alert.alert('Nova Refeição', 'Informe um nome para a refeição.');
+    } else if (date.trim().length === 0) {
+      return Alert.alert('Nova Refeição', 'Informe a data para a refeição.');
+    } else if (time.trim().length === 0) {
+      return Alert.alert('Nova Refeição', 'Informe a hora para a refeição.');
+    } else if (isDiet === null) {
+      return Alert.alert(
+        'Nova Refeição',
+        'Informe se essa refeição está dentro da dieta ou não.',
+      );
+    }
 
+    const newMeal = {
+      id: meal.id,
+      name,
+      description,
+      date,
+      time,
+      isDiet,
+    };
+
+    try {
+      await mealEdit(newMeal);
       navigation.navigate('meal', { meal: newMeal }, { pop: true });
     } catch (error) {
-      console.error(error);
+      if (error instanceof AppError) {
+        Alert.alert('Editar refeição', error.message);
+      } else {
+        Alert.alert('Editar refeição', 'Não foi possível editar a refeição.');
+        console.error(error);
+      }
     }
   }
 

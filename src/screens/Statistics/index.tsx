@@ -1,6 +1,7 @@
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { useCallback, useEffect, useState } from 'react';
 import { useTheme } from 'styled-components/native';
+import { Alert } from 'react-native';
 
 import { getMealsStatistics } from '@/storage/meals/mealsStatistics';
 import { MealsStatistics } from '@/storage/storageConfig';
@@ -35,6 +36,7 @@ export function Statistics() {
       setStatistics(computedStatistics);
     } catch (error) {
       console.error(error);
+      Alert.alert('Refeições', 'Não foi possível carregar as refeições.');
     }
   }
 
