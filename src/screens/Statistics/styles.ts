@@ -1,10 +1,14 @@
 import styled, { css } from 'styled-components/native';
+
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-export const Container = styled(SafeAreaView)`
+export const Container = styled(SafeAreaView)<{
+  $percentageStat: boolean;
+}>`
   flex: 1;
   padding-top: 32px;
-  background-color: ${({ theme }) => theme.COLORS.GREEN_LIGHT};
+  background-color: ${({ $percentageStat, theme }) =>
+    $percentageStat ? theme.COLORS.GREEN_LIGHT : theme.COLORS.RED_LIGHT};
 `;
 
 export const ScoreContainer = styled.View`

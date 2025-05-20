@@ -2,10 +2,11 @@ import styled, { css } from 'styled-components/native';
 
 import { ArrowUpRight } from 'phosphor-react-native';
 
-export const Container = styled.TouchableOpacity`
+export const Container = styled.TouchableOpacity<{ $percentageStat: boolean }>`
   align-items: center;
   padding: 20px 16px;
-  background-color: ${({ theme }) => theme.COLORS.GREEN_LIGHT};
+  background-color: ${({ $percentageStat, theme }) =>
+    $percentageStat ? theme.COLORS.GREEN_LIGHT : theme.COLORS.RED_LIGHT};
   border-radius: 8px;
   margin-top: 32px;
 `;
@@ -25,9 +26,11 @@ export const ScoreText = styled.Text`
   margin-top: 2px;
 `;
 
-export const ScoreBoardIcon = styled(ArrowUpRight).attrs(({ theme }) => ({
+export const ScoreBoardIcon = styled(ArrowUpRight).attrs<{
+  $percentageStat: boolean;
+}>(({ theme, $percentageStat }) => ({
   size: 24,
-  color: theme.COLORS.GREEN_DARK,
+  color: $percentageStat ? theme.COLORS.GREEN_DARK : theme.COLORS.RED_DARK,
 }))`
   position: absolute;
   top: 8px;

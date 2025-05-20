@@ -4,7 +4,8 @@ import { SectionList, View } from 'react-native';
 import { useCallback, useState } from 'react';
 
 import { mealsGetAll } from '@/storage/meals/mealsGetAll';
-import { Meal, MealDay } from '@/storage/storageConfig';
+import { getMealsStatistics } from '@/storage/meals/mealsStatistics';
+import { Meal, MealDay, MealsStatistics } from '@/storage/storageConfig';
 
 import { ScoreBoard } from '@/components/ScoreBoard';
 
@@ -29,6 +30,9 @@ import {
 
 export function Home() {
   const [meals, setMeals] = useState<MealDay[]>([]);
+  const [statistics, setStatistics] = useState<MealsStatistics>(
+    {} as MealsStatistics,
+  );
 
   const navigation = useNavigation();
   const theme = useTheme();
@@ -54,9 +58,19 @@ export function Home() {
     }
   }
 
+  async function fetchStatistics() {
+    try {
+      const computedStatistics = await getMealsStatistics();
+      setStatistics(computedStatistics);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   useFocusEffect(
     useCallback(() => {
       fetchMeals();
+      fetchStatistics();
     }, []),
   );
 
@@ -67,7 +81,11 @@ export function Home() {
         <Photo />
       </Header>
 
-      <ScoreBoard onPress={handleOpenStatistics} />
+      <ScoreBoard
+        percentage={statistics.percentage}
+        totalResult={statistics.totalResult}
+        onPress={handleOpenStatistics}
+      />
 
       <MealsContainer>
         <>

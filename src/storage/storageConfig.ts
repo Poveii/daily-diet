@@ -13,3 +13,12 @@ export type Meal = {
   time: string;
   isDiet: boolean;
 };
+
+export type MealsStatistics = {
+  totalResult: boolean;
+  percentage: string;
+  bestInARowMealsInDiet: number;
+  mealsRegistered: number;
+  mealsInDiet: number;
+  mealsNotInDiet: number;
+};

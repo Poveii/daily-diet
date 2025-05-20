@@ -2,12 +2,17 @@ import { TouchableOpacityProps } from 'react-native';
 
 import { Container, ScoreBoardIcon, ScoreNumber, ScoreText } from './styles';
 
-export function ScoreBoard(props: TouchableOpacityProps) {
+type Props = TouchableOpacityProps & {
+  percentage: string;
+  totalResult: boolean;
+};
+
+export function ScoreBoard({ percentage, totalResult, ...rest }: Props) {
   return (
-    <Container activeOpacity={0.8} {...props}>
-      <ScoreNumber>90,86%</ScoreNumber>
+    <Container $percentageStat={totalResult} activeOpacity={0.8} {...rest}>
+      <ScoreNumber>{percentage}%</ScoreNumber>
       <ScoreText>das refeições dentro da dieta</ScoreText>
-      <ScoreBoardIcon />
+      <ScoreBoardIcon $percentageStat={totalResult} />
     </Container>
   );
 }
