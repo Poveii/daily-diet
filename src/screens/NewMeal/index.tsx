@@ -15,6 +15,7 @@ import {
   InputsGroup,
   InputsRowContainer,
   Label,
+  MaskedInput,
   ScrollContainer,
   SubmitButton,
   SubmitButtonText,
@@ -54,7 +55,11 @@ export function NewMeal() {
         <Form>
           <InputsGroup>
             <Label>Nome</Label>
-            <Input onChangeText={setName} value={name} />
+            <Input
+              onChangeText={setName}
+              value={name}
+              placeholder="Ex.: Suco verde, crepioca..."
+            />
 
             <Label>Descrição</Label>
             <Input
@@ -62,17 +67,28 @@ export function NewMeal() {
               multiline
               onChangeText={setDescription}
               value={description}
+              placeholder="Escreva sobre o prato que você experimentou..."
             />
 
             <InputsRowContainer>
               <ExpandView>
                 <Label>Data</Label>
-                <Input onChangeText={setDate} value={date} />
+                <MaskedInput
+                  mask="99/99/9999"
+                  onChangeText={setDate}
+                  value={date}
+                  placeholder="Ex.: 20/05/2025"
+                />
               </ExpandView>
 
               <ExpandView>
                 <Label>Hora</Label>
-                <Input onChangeText={setTime} value={time} />
+                <MaskedInput
+                  mask="99:99"
+                  onChangeText={setTime}
+                  value={time}
+                  placeholder="Ex.: 12:00"
+                />
               </ExpandView>
             </InputsRowContainer>
 

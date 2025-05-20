@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { MaskedTextInput } from 'react-native-mask-text';
 
 export const Container = styled(SafeAreaView)`
   flex: 1;
@@ -34,6 +35,19 @@ export const Label = styled.Text`
 `;
 
 export const Input = styled.TextInput`
+  ${({ theme }) => css`
+    background-color: ${theme.COLORS.WHITE};
+    color: ${theme.COLORS.GRAY_100};
+    font: ${theme.TEXT_STYLES.BODY_MD};
+    border: 1px ${theme.COLORS.GRAY_500};
+  `}
+  border-radius: 6px;
+  padding: 14px;
+  margin-top: 4px;
+  vertical-align: top;
+`;
+
+export const MaskedInput = styled(MaskedTextInput)`
   ${({ theme }) => css`
     background-color: ${theme.COLORS.WHITE};
     color: ${theme.COLORS.GRAY_100};
